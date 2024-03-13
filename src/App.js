@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./app.scss";
+import 'swiper/css';
 import { SunOutlined } from "@ant-design/icons";
 import { Card, Button, Input, Select, Col, Row, Progress, Image } from 'antd';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import Cloudy from "./img/cloudy.png";
 
 const App = () => {
@@ -191,9 +193,10 @@ const App = () => {
 
   return (
     <div className="app-wrapper">
-      <Row>
+      <Row className="weather">
         <Col span={20}>
           <Card className="card-weather">
+              <h1 className="app-title center">Weather</h1>
             <Row>
               <Col span={12}>
                 <Card className="card-degree">
@@ -210,21 +213,132 @@ const App = () => {
                 </Card>
               </Col>
               <Col span={12}>
-                <div className="weather-options">
-                  <div className="active">
-                    <span>Today</span>
-                  </div>
-                  <div>Tomorrow</div>
-                  <div>Next 15 days </div>
-                </div>
+                <Row className="h-100">
+                  <Col span={24}>
+                    <div className="weather-options w-100">
+                      <div className="active">
+                        <span>Today</span>
+                      </div>
+                      <div>Tomorrow</div>
+                      <div>Next 15 days </div>
+                    </div>
+                  </Col>
+                  <Col span={24}>
+                    <Swiper
+                      spaceBetween={30}
+                      slidesPerView={5}
+                      onSlideChange={() => console.log('slide change')}
+                      onSwiper={(swiper) => console.log(swiper)}
+                    >
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card active">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                      <SwiperSlide>
+                        <Card className="slider-card">
+                          <label>12:00</label>
+                          <div className="slide-img">
+                            <Image
+                              width={50}
+                              src={Cloudy}
+                              preview={false}
+                              alt="cloudy"
+                            />
+                          </div>
+                          <label>29</label>
+                        </Card>
+                      </SwiperSlide>
+                    </Swiper>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Card>
         </Col>
       </Row>
-      <Row>
+      <Row className="air-quality">
         <Col span={20}>
-          <Card>
+          <Card className="card-air-quality">
             <div className="card-wrapper">
               <h1 className="app-title center">
                 Air Quality Comparison App
@@ -232,42 +346,48 @@ const App = () => {
               </h1>
               <div className="text-center">
                   <Row>
-                    <Col span={12}>
+                    <Col span={12} className="card-progress">
                       <Progress type="dashboard" percent={99} strokeColor={conicColors} style={{width: "240px", height: "240px"}}/>
                     </Col>
-                    <Col span={12}>
-                      <div className="app-sub-title">
-                        <label>First City:</label>
-                        <Input type="text" value={firstCity} onChange={handleFirstCityChange} />
-                      </div>
+                    <Col span={12} className="card-inputs">
+                      <Row>
+                        <Col span={24} className="inputs">
+                          <div className="app-sub-title">
+                            <label>First City:</label>
+                            <Input type="text" value={firstCity} onChange={handleFirstCityChange} />
+                          </div>
+                          <br />
+                          <div className="app-sub-title">
+                              <label>Second City:</label> 
+                              <Input type="text" value={secondCity} onChange={handleSecondCityChange} />
+                          </div>
+                        </Col>
+                        <Col span={24} className="select">
+                            <div className="app-sub-title">
+                              <label>Select Parameter:</label> 
+                              <Select value={selectedParameter} onChange={handleParameterChange}>
+                                <option value="">Choose Parameter</option>
+                                  {parameters.map((param) => (
+                                    <option key={param.id} value={param.name}>
+                                    {param.displayName || param.name}
+                                    </option>
+                                  ))}
+                              </Select>
+                            </div>
+                            <br />
+                            <Button type="primary" onClick={handleCalculate} className="compare-btn">Compare</Button>
+                        </Col>
+                      </Row>
+                    </Col>
+                    <Col span={12} className="card-results">
                       <br />
-                      <div className="app-sub-title">
-                          <label>Second City:</label> 
-                          <Input type="text" value={secondCity} onChange={handleSecondCityChange} />
-                      </div>
+                      <br />
+                      {comparisonMessage && <p>{comparisonMessage}</p>}
+                      <br />
+                      <br />
+                      {cityMeasurementsDisplay}
                     </Col>
                   </Row>
-                  
-                  <br />
-                  <div className="app-sub-title">
-                      <label>Select Parameter:</label> 
-                      <Select value={selectedParameter} onChange={handleParameterChange}>
-                        <option value="">Choose Parameter</option>
-                          {parameters.map((param) => (
-                            <option key={param.id} value={param.name}>
-                            {param.displayName || param.name}
-                            </option>
-                          ))}
-                      </Select>
-                  </div>
-                  <br />
-                  <Button type="primary" onClick={handleCalculate} className="app-compare-btn">Compare</Button>
-                  <br />
-                  <br />
-                  {comparisonMessage && <p>{comparisonMessage}</p>}
-                  <br />
-                  <br />
-                  {cityMeasurementsDisplay}
               </div>
             </div>
           </Card>
