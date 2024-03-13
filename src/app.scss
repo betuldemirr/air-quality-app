@@ -1,0 +1,90 @@
+body {
+  padding: 30px;
+  background: rgb(36, 0, 0);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(38,38,161,1) 0%, rgba(0,212,255,1) 100%);
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 50px;
+
+  .card-weather {
+      padding: 40px;
+      .card-degree {
+          position: relative;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          width: 300px;
+          height: 300px;
+          border-radius: 30px;
+          background: hsla(323, 74%, 62%, 1);
+          background: linear-gradient(135deg, hsla(323, 74%, 62%, 1) 0%, hsla(230, 79%, 45%, 1) 100%);
+          background: -moz-linear-gradient(135deg, hsla(323, 74%, 62%, 1) 0%, hsla(230, 79%, 45%, 1) 100%);
+          background: -webkit-linear-gradient(135deg, hsla(323, 74%, 62%, 1) 0%, hsla(230, 79%, 45%, 1) 100%);
+          label {
+              color: white;
+              font-size: 12px;
+          }
+          span {
+              font-size: 100px;
+              color: white;
+          }
+          .weather-img {
+              position: absolute;
+              bottom: -50px;
+          }
+      }
+      .weather-options {
+          display: flex;
+          justify-content: space-between;
+          .active {
+              span {
+                  position: relative;
+                  &::after {
+                      content: '';
+                      position: absolute;
+                      bottom: -10px;
+                      right: 45%;
+                      width: 5px;
+                      height: 5px;
+                      border-radius: 100%;
+                      background-color: black;
+                  }
+              }
+          }
+          span {
+              font-size: 12px;
+              color: black;
+          }
+      }
+  }
+}
+.app-title {
+  .anticon-sun {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+  }
+}
+
+.app-sub-title {
+  input, select {
+      border-radius: 10px;
+      height: 40px;
+  }
+}
+/* ant d*/
+.ant-row {
+  justify-content: center;
+}
+.ant-progress-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
